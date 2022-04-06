@@ -1,5 +1,6 @@
 package com.example.authtwo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -56,25 +57,23 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             try {
                 GoogleSignInAccount account = GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class);
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
+                //Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
-                Log.w(TAG, "Google sign in failed", e);
+                //Log.w(TAG, "Google sign in failed", e);
             }
         }
     }
 
     private void firebaseAuthWithGoogle(String idToken) {
-        this.mAuth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, (String) null)).addOnCompleteListener((Activity) this, new OnCompleteListener<AuthResult>() {
-            public void onComplete(Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d(MainActivity.TAG, "signInWithCredential:success");
-                    MainActivity.this.updateUI(MainActivity.this.mAuth.getCurrentUser());
-                    return;
-                }
-                Log.w(MainActivity.TAG, "signInWithCredential:failure", task.getException());
-                MainActivity.this.updateUI((FirebaseUser) null);
+        this.mAuth.signInWithCredential(GoogleAuthProvider.getCredential(idToken, (String) null)).addOnCompleteListener((Activity) this, task -> {
+            if (task.isSuccessful()) {
+                //Log.d(MainActivity.TAG, "signInWithCredential:success");
+                MainActivity.this.updateUI(MainActivity.this.mAuth.getCurrentUser());
+                return;
             }
+            //Log.w(MainActivity.TAG, "signInWithCredential:failure", task.getException());
+            MainActivity.this.updateUI((FirebaseUser) null);
         });
     }
 
