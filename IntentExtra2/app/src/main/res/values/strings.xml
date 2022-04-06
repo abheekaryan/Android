@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">IntentExtra2</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter">Enter</string>
+</resources>

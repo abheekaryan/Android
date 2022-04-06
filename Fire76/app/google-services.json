@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "320227519917",
+    "project_id": "fire76-a1573",
+    "storage_bucket": "fire76-a1573.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320227519917:android:fae174d5f95dcbd8e40524",
+        "android_client_info": {
+          "package_name": "com.example.fire76"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320227519917-ohom0srd1ddktnc8mbe45ed8b6kq383c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlHxofmO8gyvLH2bxpH46mgG8Q8s5SLFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320227519917-ohom0srd1ddktnc8mbe45ed8b6kq383c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

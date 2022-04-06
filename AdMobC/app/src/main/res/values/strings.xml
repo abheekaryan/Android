@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AdMobC</string>
+    <string name="admob_activity">AdMob Activity</string>
+</resources>
