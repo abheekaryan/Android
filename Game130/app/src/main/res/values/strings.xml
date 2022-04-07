@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Game130</string>
     <string name="title">title</string>
+    <string name="game_restart_again">Game Restarted Again !</string>
 </resources>
