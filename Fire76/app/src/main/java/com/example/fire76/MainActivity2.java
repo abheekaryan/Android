@@ -22,15 +22,17 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
         // Assigning Ids
-        editText = findViewById(R.id.editTextTextPersonName2);
-        btn2 = findViewById(R.id.button2);
+        //editText = findViewById(R.id.editTextTextPersonName2);
+        //btn2 = findViewById(R.id.button2);
 
 
-        final String usrname = editText.getText().toString();
+        final String usrname = ((EditText) findViewById(R.id.editTextTextPersonName2))
+                                .getText().toString();
         final String encoded = encodeUsrname(usrname);
 
-        btn2.setOnClickListener(new View.OnClickListener() {
+        ((Button) findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 callIntent(usrname, encoded);
@@ -38,17 +40,19 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
 
+    // Base64 implimentation for generating unique ids
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String encodeUsrname(String usrname) {
         byte[] eBytes =  usrname.getBytes();
         final String encoded = Base64.getEncoder().encodeToString(eBytes);
         return encoded;
     }
+    // Base64 implimentation for generating unique ids
 
     private void callIntent(String usrname, String encoded) {
         Intent intent = new Intent(MainActivity2.this, MainActivity.class);
         intent.putExtra("name", usrname);
-        intent.putExtra("id", encoded);
+        intent.putExtra("id", encoded);  // Unique Id As Putextra
         startActivity(intent);
     }
 }

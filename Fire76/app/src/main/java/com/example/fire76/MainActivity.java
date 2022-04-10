@@ -30,26 +30,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //<Assigning textviews>
         textView =findViewById(R.id.textView2);
         tV3 =findViewById(R.id.tV3);
         tV4 =findViewById(R.id.tV4);
+        //<Assigning textviews>
+
         editText = findViewById(R.id.editTextTextPersonName);
         button = findViewById(R.id.button);
+
+        //<Getting DB Reference>
         database = FirebaseDatabase.getInstance();
-
+        //<Getting DB Reference>
+        
         // Creating Unique User
-        Bundle bundle = getIntent().getExtras();
-        String name = bundle.getString("name");
-        String id = bundle.getString("id");
+        String name = getIntent().getStringExtra("name");
+        String id = getIntent().getStringExtra("id");
 
+        //<Setting the textValue>
         tV3.setText(name);
         tV4.setText(id);
+        //<Setting the textValue>
+
         myRef1 = database.getReference("User")
-                .child((String)id).child("msg");
+                .child(filteredId(id)).child("msg");
+        // Creating Unique User
 
 
-
-        // Input msg from App
+        // Input msg from App Setting value on Server
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,23 +65,28 @@ public class MainActivity extends AppCompatActivity {
                 myRef1.setValue(s);
             }
         });
+        // Input msg from App Setting value on Server
 
-
-        // Some More code
+        // Receiving data(msg) from server
         myRef1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String msg = snapshot.getValue(String.class);
-                textView.setText(new StringBuilder().append(name).append(":").append(msg).toString());
-
+                textView.setText(new StringBuilder().append(name).append(":")
+                        .append(msg).toString());
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
+                                    }});
+        // Receiving data(msg) from server
     }
+
+    //<Filtering encoded >
+    private String filteredId(String id) {
+        String [] str = id.split("=");
+        return str[0];
+    }
+    //<Filtering encoded >
+
 }

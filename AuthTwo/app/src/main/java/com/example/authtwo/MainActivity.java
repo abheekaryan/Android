@@ -21,6 +21,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     public FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +89,10 @@ public class MainActivity extends AppCompatActivity {
     public void updateUI(FirebaseUser user) {
         if (user != null) {
             Intent intent = new Intent(this, MainActivity2.class);
-            intent.putExtra("userId", user.getDisplayName());
+            intent.putExtra("userName", user.getDisplayName());
+            intent.putExtra("userId", user.getUid());
+            intent.putExtra("userEmail", user.getEmail());
+
             startActivity(intent);
         }
     }
