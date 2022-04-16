@@ -48,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         android:background="@drawable/rec_shadow"
-        app:srcCompat="@drawable/game1" />
+        app:srcCompat="@drawable/rps_round" />
 
     <ImageView
         android:id="@+id/imageView2"
